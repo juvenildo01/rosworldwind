@@ -35,6 +35,8 @@ rosrun rosworldwind turtlesimTransformation.py
 start 
 java ... Adapter.java (-Djava.library.path=libs/native-libs/32bit/)
 
+set prigin to a place you like. The elevation is above sea level and should be more than the ground elevation at that particular place. 
+
 setup marker
 	Displays - add-button 
 
