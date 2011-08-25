@@ -2,12 +2,7 @@
 \mainpage
 \htmlinclude manifest.html
 
-\b ros_worldwind_adapter is ... 
-
-<!-- 
-Provide an overview of your package.
--->
-
+\b The rosworldwind adapter provides an interface to be able to	use the NASA World Wind technology and ROS.
 
 \section codeapi Code API
 
@@ -21,27 +16,6 @@ If your codebase is fairly large or has different sets of APIs, you
 should use the doxygen 'group' tag to keep these APIs together. For
 example, the roscpp documentation has 'libros' group.
 
---- HowTo ---
-svn checkout https://rosworldwind.googlecode.com/svn/trunk/ rosworldwind
-rosmake rosworldwind
-
-import into eclipse
-
-start 3 nodes:
-rosrun turtlesim turtlesim_node 
-rosrun turtlesim turtle_teleop_key 
-rosrun rosworldwind turtlesimTransformation.py 
-
-start 
-java ... Adapter.java (-Djava.library.path=libs/native-libs/32bit/)
-
-set prigin to a place you like. The elevation is above sea level and should be more than the ground elevation at that particular place. 
-
-setup marker
-	Displays - add-button 
-
-topic: turtleMarker
-gfx path: gfx/marker/sea-turtle.png
 
 -->
 
