@@ -54,9 +54,9 @@ def talk(data):
     
     pose = MarkerPose()
     
-    pose.position.x = data.x * 1000
-    pose.position.y = data.y * 1000
-    pose.position.z = 1000
+    pose.position.x = data.x * 10000
+    pose.position.y = data.y * 10000
+    pose.position.z = 10000
     
     pose.orientation.x = q[0]
     pose.orientation.y = q[1]
@@ -65,9 +65,9 @@ def talk(data):
     
     msg.pose = pose
     
-    msg.scale.x = 1000
-    msg.scale.y = 500
-    msg.scale.z = 500
+    msg.scale.x = 40000
+    msg.scale.y = 40000
+    msg.scale.z = 40000
     
     msg.color = ColorRGBA(0, 0, 1, 1)
     
