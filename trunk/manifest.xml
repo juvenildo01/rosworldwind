@@ -1,0 +1,28 @@
+<package>
+  <description brief="ros_worldwind_adapter">
+
+     rosworldwind
+
+  </description>
+  <author>Michael Lichtenstern, Martin Frassl</author>
+  <license>BSD</license>
+  <review status="unreviewed" notes=""/>
+  <url>http://ros.org/wiki/ros_worldwind_adapter</url>
+  <depend package="rosjava"/>
+  <depend package="std_msgs" />
+  <depend package="visualization_msgs" />
+  <depend package="tf" />
+  <depend package="turtlesim" />
+
+  <export>
+    <rosjava-src location="src" />
+    <rosjava-pathelement location="libs/miglayout_4.0/miglayout-4.0-swing.jar" />
+    <rosjava-pathelement location="libs/WorldWind_1.2/worldwind.jar" />
+    <rosjava-pathelement location="libs/jogl_1.1.2/jogl.jar" />
+    <rosjava-pathelement location="libs/gluegen/gluegen-rt.jar" />
+    <rosjava-pathelement location="libs/gdal/gdal.jar" />
+  </export>
+
+</package>
+
+

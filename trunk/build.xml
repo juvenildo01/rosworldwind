@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="." default="clean">
+
+  <property file="ros.properties" />
+  
+  <property name="bin" location="bin" />
+  <property name="src" location="src" />
+  <property name="target" location="target" />
+	  
+  <path id="classpath">
+    <pathelement path="${ros.classpath}" />
+    <pathelement path="libs/WorldWind_1.2/worldwind.jar" />
+    <pathelement path="libs/miglayout_4.0/miglayout-4.0-swing.jar" />
+  	<pathelement path="libs/jogl_1.1.2/jogl.jar" />
+  	<pathelement path="libs/gluegen/gluegen-rt.jar" />
+  	<pathelement path="libs/gdal/gdal.jar" />
+  </path>
+
+  <echo message="${toString:classpath}" />
+
+  <target name="init">
+    <mkdir dir="${bin}" />
+  	<mkdir dir="${target}" />
+    <mkdir dir="${src}" />
+  </target>
+
+  <target name="compile" depends="init">
+    <javac destdir="${bin}">
+      <classpath refid="classpath" />
+      <src path="${src}" />
+    </javac>
+  </target>
+	
+  <target name="jar" depends="compile">
+    <jar destfile="${target}/ros-worldwind.jar">
+      <fileset dir="${bin}" />
+    </jar>
+  </target>
+	
+  <target name="clean" depends="jar">
+  	<delete dir="${target}" />
+  </target>
+
+</project>
