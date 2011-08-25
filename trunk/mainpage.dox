@@ -21,7 +21,11 @@ If your codebase is fairly large or has different sets of APIs, you
 should use the doxygen 'group' tag to keep these APIs together. For
 example, the roscpp documentation has 'libros' group.
 
+--- HowTo ---
+svn checkout https://rosworldwind.googlecode.com/svn/trunk/ rosworldwind
 rosmake rosworldwind
+
+import into eclipse
 
 start 3 nodes:
 rosrun turtlesim turtlesim_node 
@@ -31,8 +35,8 @@ rosrun rosworldwind turtlesimTransformation.py
 start 
 java ... Adapter.java (-Djava.library.path=libs/native-libs/32bit/)
 
-marker einrichten
-add links unten
+setup marker
+	Displays - add-button 
 
 topic: turtleMarker
 gfx path: gfx/marker/sea-turtle.png
