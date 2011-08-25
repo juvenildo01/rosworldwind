@@ -31,7 +31,9 @@ import gov.nasa.worldwind.geom.Angle;
 import gov.nasa.worldwind.geom.LatLon;
 import gov.nasa.worldwind.geom.Position;
 import gov.nasa.worldwind.util.StatusBar;
+import gov.nasa.worldwind.util.WWXML;
 import gov.nasa.worldwind.view.orbit.BasicOrbitView;
+import gov.nasa.worldwind.wms.WMSTiledImageLayer;
 
 import java.awt.BorderLayout;
 import java.awt.Dimension;
@@ -55,6 +57,9 @@ public class Adapter implements WindowListener {
 	private Selection selection;
 	private RenderableManager renderableManager;
 	private LocalCoordinateSystem localCoordinateSystem;
+	
+	private WMSTiledImageLayer usgsUrbanAreaLayer;
+	private WMSTiledImageLayer usdanaipusgsLayer;
 
 	public Adapter() {
 		Dimension dimension = new Dimension(1400, 800);
@@ -68,6 +73,13 @@ public class Adapter implements WindowListener {
 		canvas = new WorldWindowGLCanvas();
 		Model model = (Model) WorldWind.createConfigurationComponent(AVKey.MODEL_CLASS_NAME);
 		canvas.setModel(model);
+		
+		usgsUrbanAreaLayer = new WMSTiledImageLayer(WWXML.openDocumentFile("config/Earth/USGSUrbanAreaOrthoLayer.xml", null), null);
+		usdanaipusgsLayer = new WMSTiledImageLayer(WWXML.openDocumentFile("config/Earth/USDANAIPUSGSWMSImageLayer.xml", null), null);
+		enableUSGSUrbanArea(false);
+		enableUSDANAIPUSGS(false);
+		canvas.getModel().getLayers().add(usdanaipusgsLayer);
+		canvas.getModel().getLayers().add(usgsUrbanAreaLayer);
 
 		renderableManager = new RenderableManager(this);
 
@@ -122,7 +134,15 @@ public class Adapter implements WindowListener {
 			localCoordinateSystem.setLocalOrigin(new Position(new LatLon(Angle.fromDegrees(0), Angle.fromDegrees(0)), 0));
 		}
 	}
-
+	
+	public void enableUSGSUrbanArea(boolean enable) {
+		usgsUrbanAreaLayer.setEnabled(enable);
+	}
+	
+	public void enableUSDANAIPUSGS(boolean enable) {
+		usdanaipusgsLayer.setEnabled(enable);
+	}
+	
 	public WorldWindowGLCanvas getCanvas() {
 		return canvas;
 	}
