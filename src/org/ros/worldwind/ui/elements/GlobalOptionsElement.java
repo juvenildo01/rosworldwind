@@ -55,6 +55,8 @@ public class GlobalOptionsElement extends AbstractElement {
 	public static final String ORIGIN_ROTATION_YAXIS_KEY = ".origin.rotation.yaxis";
 	public static final String ORIGIN_ROTATION_ZAXIS_KEY = ".origin.rotation.zaxis";
 	public static final String ORIGIN_SHOW_KEY = ".origin.show";
+	public static final String LAYER_USGSURBANAREA_SHOW_KEY = ".layer.usgsurbanarea";
+	public static final String LAYER_USDANAIPUSGA_KEY = ".layer.usdanaipusgsarea";
 
 	private OriginMouseAdapter originMouseAdapter;
 
@@ -69,6 +71,8 @@ public class GlobalOptionsElement extends AbstractElement {
 	private JFormattedTextField rotationYAxis;
 	private JFormattedTextField rotationZAxis;
 	private JCheckBox showOrigin;
+	private JCheckBox showUSGSUrbanArea;
+	private JCheckBox showUSDANAIPUSGS;
 
 	public GlobalOptionsElement(Adapter adapter, String persistenceID) {
 		super(adapter, persistenceID);
@@ -121,6 +125,20 @@ public class GlobalOptionsElement extends AbstractElement {
 		showOrigin.setSelected(Boolean.parseBoolean(AdapterProperties.getInstance().getProperty(persistenceID + ORIGIN_SHOW_KEY)));
 		showOrigin.setOpaque(false);
 		addRow(new JLabel("show"), showOrigin);
+		
+		showUSGSUrbanArea = new JCheckBox();
+		showUSGSUrbanArea.setToolTipText("show USGS Urban Area layer");
+		showUSGSUrbanArea.addItemListener(new USGSUrbanAreaItemListener());
+		showUSGSUrbanArea.setSelected(Boolean.parseBoolean(AdapterProperties.getInstance().getProperty(persistenceID + LAYER_USGSURBANAREA_SHOW_KEY)));
+		showUSGSUrbanArea.setOpaque(false);
+		addRow(new JLabel("USGS Urban"), showUSGSUrbanArea);
+		
+		showUSDANAIPUSGS = new JCheckBox();
+		showUSDANAIPUSGS.setToolTipText("show origin on globe");
+		showUSDANAIPUSGS.addItemListener(new USDANAIPUSGSItemListener());
+		showUSDANAIPUSGS.setSelected(Boolean.parseBoolean(AdapterProperties.getInstance().getProperty(persistenceID + LAYER_USDANAIPUSGA_KEY)));
+		showUSDANAIPUSGS.setOpaque(false);
+		addRow(new JLabel("USDA NAIP"), showUSDANAIPUSGS);
 
 		addRow(initFlyToOriginButton(), Displays.LAYOUT_BUTTON);
 
@@ -224,6 +242,26 @@ public class GlobalOptionsElement extends AbstractElement {
 			if (e != null) {
 				renderOrigin();
 				AdapterProperties.getInstance().setProperty(persistenceID + ORIGIN_SHOW_KEY, showOrigin.isSelected() + "");
+			}
+		}
+	}
+	
+	private class USGSUrbanAreaItemListener implements ItemListener {
+		@Override
+		public void itemStateChanged(ItemEvent e) {
+			if (e != null) {
+				adapter.enableUSGSUrbanArea(showUSGSUrbanArea.isSelected());
+				AdapterProperties.getInstance().setProperty(persistenceID + LAYER_USGSURBANAREA_SHOW_KEY, showUSGSUrbanArea.isSelected() + "");
+			}
+		}
+	}
+	
+	private class USDANAIPUSGSItemListener implements ItemListener {
+		@Override
+		public void itemStateChanged(ItemEvent e) {
+			if (e != null) {
+				adapter.enableUSDANAIPUSGS(showUSDANAIPUSGS.isSelected());
+				AdapterProperties.getInstance().setProperty(persistenceID + LAYER_USDANAIPUSGA_KEY, showUSDANAIPUSGS.isSelected() + "");
 			}
 		}
 	}

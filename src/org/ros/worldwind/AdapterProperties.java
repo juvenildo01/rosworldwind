@@ -45,7 +45,6 @@ public class AdapterProperties {
 			adapterProperties.load(in);
 			in.close();
 		} catch (Exception e) {
-			System.err.println(propertiesFileName + " could not be loaded!");
 		}
 	}
 
@@ -55,7 +54,6 @@ public class AdapterProperties {
 			adapterProperties.store(out, "--- ROS WorldWind Properties ---");
 			out.close();
 		} catch (Exception e) {
-			System.err.println(propertiesFileName + " could not be stored");
 		}
 	}
 
