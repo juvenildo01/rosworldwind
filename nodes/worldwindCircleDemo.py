@@ -37,7 +37,7 @@ from tf import transformations
 
 def talker():
     pub = rospy.Publisher('marker01', Marker)
-    rospy.init_node('testtalker')
+    rospy.init_node('testrosworldwind')
     
     i = 0
     steps = 50
@@ -49,7 +49,7 @@ def talker():
         msg.header.frame_id = "testid";
         msg.header.stamp = rospy.Time.now()
         
-        radius = 100000
+        radius = 150000
         
         msg.id = 1
         msg.type = 1
@@ -60,7 +60,7 @@ def talker():
         pose.position.y = -radius * -1*math.cos(1.0/steps * i * 2 * math.pi)
         q = transformations.quaternion_from_euler(0, 0, 1.0/steps * 2 * i * math.pi, 'rxyz')
         
-        pose.position.z = 10
+        pose.position.z = 100000
         
         pose.orientation.x = q[0]
         pose.orientation.y = q[1]
@@ -69,9 +69,9 @@ def talker():
         
         msg.pose = pose
         
-        msg.scale.x = 100000
-        msg.scale.y = 100000
-        msg.scale.z = 100000
+        msg.scale.x = 40000
+        msg.scale.y = 40000
+        msg.scale.z = 40000
         
         msg.color = ColorRGBA(0, 1, 0, 1)
         
