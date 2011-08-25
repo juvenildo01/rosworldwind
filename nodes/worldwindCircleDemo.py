@@ -48,15 +48,16 @@ def talker():
         
         msg.header.frame_id = "testid";
         msg.header.stamp = rospy.Time.now()
-
+        
+        radius = 100000
         
         msg.id = 1
         msg.type = 1
         
         pose = Pose()
         
-        pose.position.x = 12* math.sin(1.0/steps * i * 2 * math.pi)
-        pose.position.y = -12 * -1*math.cos(1.0/steps * i * 2 * math.pi)
+        pose.position.x = radius* math.sin(1.0/steps * i * 2 * math.pi)
+        pose.position.y = -radius * -1*math.cos(1.0/steps * i * 2 * math.pi)
         q = transformations.quaternion_from_euler(0, 0, 1.0/steps * 2 * i * math.pi, 'rxyz')
         
         pose.position.z = 10
@@ -68,9 +69,9 @@ def talker():
         
         msg.pose = pose
         
-        msg.scale.x = 1
-        msg.scale.y = 1
-        msg.scale.z = 1
+        msg.scale.x = 100000
+        msg.scale.y = 100000
+        msg.scale.z = 100000
         
         msg.color = ColorRGBA(0, 1, 0, 1)
         
