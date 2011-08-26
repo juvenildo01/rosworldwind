@@ -110,16 +110,17 @@ public class Displays extends TopLevelPanel {
 
 	private void store(String key, Vector<Integer> vector) {
 		String value = "";
-		for (Integer i : vector)
+		for (Integer i : vector) {
 			value += i + ",";
-		value = value.substring(0, value.lastIndexOf(","));
+		}
+		if (value.length() > 0)
+			value = value.substring(0, value.lastIndexOf(","));
 		AdapterProperties.getInstance().setProperty(key, value);
 	}
 
 	private class AddActionListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			AdapterProperties.getInstance().setProperty("marker", true + "");
 			int freeInteger = 0;
 			for (Integer i : elementsVector) {
 				if (i == freeInteger)

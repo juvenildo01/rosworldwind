@@ -25,7 +25,10 @@ package org.ros.worldwind;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.util.Collections;
+import java.util.Enumeration;
 import java.util.Properties;
+import java.util.Vector;
 
 public class AdapterProperties {
 	private static AdapterProperties adapterPropertiesObject = null;
@@ -39,7 +42,7 @@ public class AdapterProperties {
 	}
 
 	private void loadProperties() {
-		adapterProperties = new Properties();
+		adapterProperties = new SortedProperties();
 		try {
 			FileInputStream in = new FileInputStream(propertiesFileName);
 			adapterProperties.load(in);
@@ -78,4 +81,20 @@ public class AdapterProperties {
 	}
 
 	public static final String LAST_VIEW = "globe.lastView";
+	
+	private class SortedProperties extends Properties {
+		private static final long serialVersionUID = -2383011478791305610L;
+
+		@SuppressWarnings({ "rawtypes", "unchecked" })
+		  public synchronized Enumeration keys() {
+			Enumeration keysEnum = super.keys();
+			Vector keyList = new Vector();
+		     while(keysEnum.hasMoreElements()){
+		       keyList.add(keysEnum.nextElement());
+		     }
+		     Collections.sort(keyList);
+		     return keyList.elements();
+		  }
+	}
+
 }
