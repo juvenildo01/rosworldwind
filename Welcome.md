@@ -1,0 +1,1 @@
+The documentation for rosworldwind is on the [ROS wiki](http://www.ros.org/wiki/rosworldwind).
